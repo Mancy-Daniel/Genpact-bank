@@ -19,7 +19,7 @@ public class DepositServlet extends HttpServlet {
         String accountNo = request.getParameter("account_no");
         double amount = Double.parseDouble(request.getParameter("amount"));
 
-        Transaction transaction = new Transaction(accountNo, amount, "Deposit");
+        Transaction transaction = new Transaction(0, accountNo, null, amount, "Deposit");
         TransactionDAO transactionDAO = new TransactionDAO();
 
         try {

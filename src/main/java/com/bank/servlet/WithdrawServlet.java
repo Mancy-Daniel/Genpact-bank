@@ -32,7 +32,7 @@ public class WithdrawServlet extends HttpServlet {
 
             if (currentBalance >= amount) {
                 // Record the withdrawal transaction
-                Transaction transaction = new Transaction(accountNo, amount, "Withdrawal");
+                Transaction transaction = new Transaction(0, accountNo, null, amount, "Withdrawal");
                 boolean transactionSuccess = transactionDAO.insertTransaction(transaction);
 
                 // Update the customer's balance

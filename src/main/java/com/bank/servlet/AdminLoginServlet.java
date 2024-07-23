@@ -20,7 +20,7 @@ public class AdminLoginServlet extends HttpServlet {
     private AdminDAO adminDAO;
 
     public void init() {
-        adminDAO = new AdminDAO();
+        adminDAO = new AdminDAO(null);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
