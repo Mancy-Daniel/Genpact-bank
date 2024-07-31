@@ -9,53 +9,61 @@ public class Transaction {
     private double amount;
     private String transactionType;
 
-    public Transaction(int id, String accountNo, Timestamp transactionDate, double amount, String transactionType) {
-        this.setId(id);
-        this.setAccountNo(accountNo);
-        this.setTransactionDate(transactionDate);
-        this.setAmount(amount);
-        this.setTransactionType(transactionType);
+    // Constructors
+    public Transaction() {}
+
+    public Transaction(String accountNo, double amount, String transactionType) {
+        this.accountNo = accountNo;
+        this.amount = amount;
+        this.transactionType = transactionType;
     }
 
-	public int getId() {
-		return id;
-	}
+    public Transaction(int id, String accountNo, Timestamp transactionDate, double amount, String transactionType) {
+        this.id = id;
+        this.accountNo = accountNo;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+        this.transactionType = transactionType;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
 
-	public String getAccountNo() {
-		return accountNo;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
-	}
+    public String getAccountNo() {
+        return accountNo;
+    }
 
-	public Timestamp getTransactionDate() {
-		return transactionDate;
-	}
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
 
-	public void setTransactionDate(Timestamp transactionDate) {
-		this.transactionDate = transactionDate;
-	}
+    public Timestamp getTransactionDate() {
+        return transactionDate;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    public void setTransactionDate(Timestamp transactionDate) {
+        this.transactionDate = transactionDate;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public double getAmount() {
+        return amount;
+    }
 
-	public String getTransactionType() {
-		return transactionType;
-	}
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
-	}
+    public String getTransactionType() {
+        return transactionType;
+    }
 
-    
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
 }

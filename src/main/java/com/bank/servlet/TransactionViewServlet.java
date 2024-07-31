@@ -25,9 +25,10 @@ public class TransactionViewServlet extends HttpServlet {
         String accountNo = request.getParameter("account_no");
 
         try {
+            System.out.println("Account Number: " + accountNo); // Debugging
             List<Transaction> transactions = transactionDAO.getTransactionsByAccountNo(accountNo);
+            System.out.println("Transactions found: " + transactions.size()); // Debugging
             request.setAttribute("transactions", transactions);
-            request.setAttribute("accountNo", accountNo);
             request.getRequestDispatcher("view-transaction.jsp").forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.bank.model.Transaction" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>View Transactions</title>
+    <title>Transaction History</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,9 +24,7 @@
             margin-top: 20px;
         }
         table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
+            border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
@@ -57,39 +57,51 @@
 </head>
 <body>
     <div class="container">
-        <h1>View Transactions</h1>
+        <h1>Transaction History</h1>
         <form action="TransactionViewServlet" method="post">
             <div class="form-group">
                 <label for="account_no">Account Number</label>
                 <input type="text" id="account_no" name="account_no" required>
             </div>
             <div class="form-group">
-                <button type="submit">View Transactions</button>
+                <button type="submit">View History</button>
             </div>
         </form>
-
-        <c:if test="${not empty transactions}">
-            <h2>Transactions for Account Number: ${accountNo}</h2>
+        <%
+            List<Transaction> transactions = (List<Transaction>) request.getAttribute("transactions");
+            if (transactions != null && !transactions.isEmpty()) {
+        %>
             <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Transaction Date</th>
-                    <th>Amount</th>
-                    <th>Transaction Type</th>
-                </tr>
-                <c:forEach var="transaction" items="${transactions}">
+                <thead>
                     <tr>
-                        <td>${transaction.id}</td>
-                        <td>${transaction.transactionDate}</td>
-                        <td>${transaction.amount}</td>
-                        <td>${transaction.transactionType}</td>
+                        <th>ID</th>
+                        <th>Transaction Date</th>
+                        <th>Amount</th>
+                        <th>Transaction Type</th>
                     </tr>
-                </c:forEach>
+                </thead>
+                <tbody>
+                    <%
+                        for (Transaction transaction : transactions) {
+                    %>
+                    <tr>
+                        <td><%= transaction.getId() %></td>
+                        <td><%= transaction.getTransactionDate() %></td>
+                        <td><%= transaction.getAmount() %></td>
+                        <td><%= transaction.getTransactionType() %></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
             </table>
-        </c:if>
-        <c:if test="${empty transactions}">
-            <p>No transactions found for the provided account number.</p>
-        </c:if>
+        <%
+            } else if (transactions != null) {
+        %>
+            <p>No transactions found for this account number.</p>
+        <%
+            }
+        %>
     </div>
 </body>
 </html>
